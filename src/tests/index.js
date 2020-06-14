@@ -57,4 +57,30 @@ describe('RestCountries Test Suite', () => {
         res.body.data.won.should.be.gt(-1);
     });
   });
+
+  describe('GET /nonexistentroute', () => {
+    it('should return 404 on visit to non existent route', async () => {
+      const res = await chai.request(app)
+        .get('/nonexistentroute');
+
+        res.status.should.equal(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('message');
+        res.body.data.message.should.equal('Sorry, the endpoint you are looking for does not exist, please visit /api/v1');
+    });
+  });
+
+  describe('GET /api/v1', () => {
+    it('should return welcome message on visit to api root', async () => {
+      const res = await chai.request(app)
+        .get('/api/v1');
+
+        res.status.should.equal(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('message');
+        res.body.data.message.should.equal('Welcome to restcountries API');
+    });
+  });
 });
