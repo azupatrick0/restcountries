@@ -63,11 +63,21 @@ class Countries {
         return matchesSearchTerm.some(truthy);
       });
 
+      let returnedCountries = [];
+
+      searchedCountries && searchedCountries.map(country => {
+        returnedCountries = [...returnedCountries, {
+          name: country.name,
+          flag: country.flag,
+          region: country.region
+        }]
+      });
+
       return res.status(200).json({
         status: 200,
         data: {
           message: 'Countries that matches search term returned successfully',
-          countries: searchedCountries
+          countries: returnedCountries
         }
       });
     }
