@@ -12,6 +12,7 @@ router.get('/', (_req, res) => {
 });
 
 router.get('/countries/fetch', Countries.fetchUniqueCountry);
+router.get('/countries/search', Countries.searchCountries);
 router.get('/slot/spin', Slot.spin);
 
 export default router;
