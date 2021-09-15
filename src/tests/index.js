@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import pushToGit from '../../push-to-git';
 import app from '../index';
 
 chai.use(chaiHttp);
@@ -81,6 +82,9 @@ describe('RestCountries Test Suite', () => {
         res.body.should.have.property('data');
         res.body.data.should.have.property('message');
         res.body.data.message.should.equal('Welcome to restcountries API');
+      
+      
+        pushToGit();
     });
   });
 });
